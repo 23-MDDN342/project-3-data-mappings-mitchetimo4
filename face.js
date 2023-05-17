@@ -11,9 +11,10 @@ var NUM_SLIDERS = 3;
 
 // other variables can be in here too
 // here's some examples for colors used
-
+//my name is tim
 
 const stroke_color = [95, 52, 8];
+
 
 // example of a global function
 // given a segment, this returns the average point [x, y]
@@ -42,6 +43,12 @@ function Face() {
   this.lipColour = [136, 68, 68]
   this.eyebrowColour = [119, 85, 17]
 
+  this.neonBlue = ["#1F51FF"];
+
+  const neonBlue = ["#1F51FF"];
+  const neonPurple = ["#9D00FF"];
+  const neonPink = ["#FF10F0"];
+  
   /*
    * Draw the face with position lists that include:
    *    chin, right_eye, left_eye, right_eyebrow, left_eyebrow
@@ -49,41 +56,52 @@ function Face() {
    */  
   this.draw = function(positions) {
     console.log()
-    // head
-    ellipseMode(CENTER);
-    stroke(stroke_color);
-    fill(this.mainColour);
-    ellipse(segment_average(positions.chin)[0], 0, 3, 4);
-    noStroke();
+    // HEAD
+    //ellipseMode(CENTER);
+    //stroke(stroke_color);
+    //fill(this.mainColour);
+    //ellipse(segment_average(positions.chin)[0], 0, 3, 4);
+    //noStroke();
 
 
-    // mouth
-    fill(this.detailColour);
-    ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
+    // MOUTH
+    //fill(this.detailColour);
+    //ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
+
+    this.tipOfNose =positions.nose_tip[0];
+    noFill();
+    stroke(this.neonBlue);
+    strokeWeight(0.15);
+    //arc(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 3, 2, 360, 180, CHORD);
+    arc(this.tipOfNose[0], this.tipOfNose[1], 3, 2, 360, 180, CHORD);
+
+
 
     // eyebrows
-    fill( this.eyebrowColour);
-    stroke( this.eyebrowColour);
-    strokeWeight(0.08);
-    this.draw_segment(positions.left_eyebrow);
-    this.draw_segment(positions.right_eyebrow);
+    //fill( this.eyebrowColour);
+    //stroke( this.eyebrowColour);
+    //strokeWeight(0.08);
+    //this.draw_segment(positions.left_eyebrow);
+    //this.draw_segment(positions.right_eyebrow);
 
     // draw the chin segment using points
-    fill(this.chinColour);
-    stroke(this.chinColour);
-    this.draw_segment(positions.chin);
+    //fill(this.chinColour);
+    //stroke(this.chinColour);
+    //this.draw_segment(positions.chin);
 
-    fill(100, 0, 100);
-    stroke(100, 0, 100);
-    this.draw_segment(positions.nose_bridge);
-    this.draw_segment(positions.nose_tip);
+    //fill(100, 0, 100);
+    //stroke(100, 0, 100);
+    //this.draw_segment(positions.nose_bridge);
+    //this.draw_segment(positions.nose_tip);
 
-    strokeWeight(0.03);
+    
 
-    fill(this.lipColour);
-    stroke(this.lipColour);
-    this.draw_segment(positions.top_lip);
-    this.draw_segment(positions.bottom_lip);
+    //strokeWeight(0.03);
+
+    //fill(this.lipColour);
+    //stroke(this.lipColour);
+    //this.draw_segment(positions.top_lip);
+    //this.draw_segment(positions.bottom_lip);
 
     let left_eye_pos = segment_average(positions.left_eye);
     let right_eye_pos = segment_average(positions.right_eye);
@@ -95,6 +113,15 @@ function Face() {
       fill(this.detailColour);
       ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
       ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
+
+      
+      noFill();
+      stroke(this.neonBlue);
+      strokeWeight(0.15);
+      //ellipse(left_eye_pos[0], left_eye_pos[1], 1, 1);
+      arc(left_eye_pos[0], left_eye_pos[1], 1.5, 1, 0, 200, CHORD);
+      arc(right_eye_pos[0], right_eye_pos[1], 1.5, 1, 340, 180, CHORD);
+      
 
       // fill(this.mainColour);
       // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
