@@ -6,3 +6,7 @@
 18/5/23
 
 So far I have started my neon mask using arcs. This produces curves instead of straight lines unlike my sketch but I'm going to work with it for now while I get the rest of it drawn. My next step is to add the teeth and some eyebrows and alter the dots in the eyes. 
+
+24/5/23
+
+Added the halo ellipse. Still havnt added the teeth or other details as I am having a bit of trouble figuring out where to draw them. 

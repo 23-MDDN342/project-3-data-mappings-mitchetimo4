@@ -48,6 +48,7 @@ function Face() {
   const neonBlue = ["#1F51FF"];
   const neonPurple = ["#9D00FF"];
   const neonPink = ["#FF10F0"];
+  const neonYellow = ["#faed27"];
   
   /*
    * Draw the face with position lists that include:
@@ -84,6 +85,15 @@ function Face() {
     //this.draw_segment(positions.left_eyebrow);
     //this.draw_segment(positions.right_eyebrow);
 
+    this.avLeftEyebrow = positions.left_eyebrow[0];
+    this.avRightEyebrow = positions.right_eyebrow[0];
+
+    //line(this.avLeftEyebrow[0], this.avLeftEyebrow[1], this.avRightEyebrow[0], this.avRightEyebrow[1]);
+
+    //stroke(this.neonYellow);
+    //stroke(this.neonPink);
+
+    ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
     // draw the chin segment using points
     //fill(this.chinColour);
     //stroke(this.chinColour);
