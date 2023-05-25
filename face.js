@@ -74,15 +74,84 @@ function Face() {
     stroke(this.neonBlue);
     strokeWeight(0.15);
     //arc(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 3, 2, 360, 180, CHORD);
-    arc(this.tipOfNose[0], this.tipOfNose[1], 3, 2, 360, 180, CHORD);
+    
+    //arc(this.tipOfNose[0]+0.2, this.tipOfNose[1], 3, 2, 360, 180, CHORD); //MOUTH
+
+      //line(positions.right_eye[4][0],positions.right_eye[4][1], positions.chin[16][0],positions.chin[16][1]);
+    
+    /*
+   * Draw the face with position lists that include:
+   *    chin, right_eye, left_eye, right_eyebrow, left_eyebrow
+   *    bottom_lip, top_lip, nose_tip, nose_bridge, 
+   */  
+
+      this.midCheek = segment_average([positions.right_eye[4], positions.chin[11]]);
+       
+      // this.jokerSmileLeft = segment_average([positions.chin[4], positions.top_lip[0]]); //LEFT MOUTH EDGE
+      // this.jokerSmileRight = segment_average([positions.chin[12], positions.top_lip[6]]); //RIGHT MOUTH EDGE
+      
+      this.jokerSmileLeft = segment_average([positions.chin[3], positions.top_lip[0]]); //LEFT MOUTH EDGE
+      this.jokerSmileRight = segment_average([positions.chin[13], positions.top_lip[6]]); //RIGHT MOUTH EDGE
+      
+      this.jokerSmileLeftMid = segment_average([positions.chin[6], positions.bottom_lip[4]]); //LEFT MOUTH MIDDLE POINT
+      this.jokerSmileLeftMidU = segment_average([positions.chin[5], positions.top_lip[0]]); //LEFT MOUTH UPPER MIDDLE POINT
+
+      this.jokerSmileRightMid = segment_average([positions.chin[10], positions.bottom_lip[1]]); //RIGHT MOUTH MIDDLE POINT
+      this.jokerSmileRightMidU = segment_average([positions.chin[11], positions.top_lip[6]]); //RIGHT MOUTH UPPER MIDDLE POINT
+
+      this.jokerSmileBottom = segment_average([positions.chin[8], positions.bottom_lip[2]]); //MOUTH BOTTOM POINT
+
+      //POINTS FOR TEETH PLACEMENT
+      this.topLipMiddle = segment_average([this.jokerSmileLeft, this.jokerSmileRight]);
+      this.topLipLeftMid = segment_average([this.jokerSmileLeft, this.topLipMiddle]);
+      this.topLipRightMid = segment_average([this.jokerSmileRight, this.topLipMiddle]);
 
 
+
+      // moouthShape 
+      beginShape()
+      //vertex(this.jokerSmileLeft[0],this.jokerSmileLeft[1] )
+      //curveVertex( this.jokerSmileLeft[0],this.jokerSmileLeft[1])
+      //curveVertex( this.jokerSmileRight[0], this.jokerSmileRight[1])
+      //curveVertex( this.jokerSmileLeft[0],this.jokerSmileLeft[1])
+      //curveVertex( this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1])
+
+
+      //curveVertex( this.jokerSmileLeftMid[0],this.jokerSmileLeftMid[1])
+      //curveVertex( this.jokerSmileBottom[0], this.jokerSmileBottom[1])
+
+      //curveVertex(this.jokerSmileBottom[0],this.jokerSmileBottom[1])
+      //curveVertex(this.jokerSmileRightMid[0], this.jokerSmileRightMid[1])
+
+      //curveVertex(this.jokerSmileRight[0],this.jokerSmileRight[1])
+      //curveVertex(this.jokerSmileRightMid[0], this.jokerSmileRightMid[1])
+
+      //DRAW MOUTH SHAPE
+     line(this.jokerSmileLeft[0],this.jokerSmileLeft[1],this.jokerSmileRight[0], this.jokerSmileRight[1]); //STRAIGHT LINE FOR TOP LIP
+
+     line(this.jokerSmileLeft[0],this.jokerSmileLeft[1],this.jokerSmileLeftMidU[0], this.jokerSmileLeftMidU[1]);
+     line(this.jokerSmileLeftMidU[0],this.jokerSmileLeftMidU[1],this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1]);
+     line(this.jokerSmileLeftMid[0],this.jokerSmileLeftMid[1],this.jokerSmileBottom[0], this.jokerSmileBottom[1]);
+     line(this.jokerSmileBottom[0],this.jokerSmileBottom[1],this.jokerSmileRightMid[0], this.jokerSmileRightMid[1]);
+     line(this.jokerSmileRightMid[0],this.jokerSmileRightMid[1],this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
+     line(this.jokerSmileRight[0],this.jokerSmileRight[1],this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
+
+      //DRAW TEETH (left to right)
+      line(this.jokerSmileLeftMidU[0], this.jokerSmileLeftMidU[1], this.topLipLeftMid[0], this.topLipLeftMid[1]);
+      line(this.topLipLeftMid[0], this.topLipLeftMid[1], this.jokerSmileBottom[0], this.jokerSmileBottom[1]);
+      line(this.jokerSmileBottom[0], this.jokerSmileBottom[1], this.topLipRightMid[0], this.topLipRightMid[1]);
+      line(this.topLipRightMid[0], this.topLipRightMid[1], this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
+      endShape()      
+      //console.log(this.midCheek)
+     // this.midCheekY = segment_average([positions.right_eye[4][1], positions.chin[11][1]]);
+
+      //line(positions.chin[16][0],positions.chin[16][1], this.midCheek[0], this.midCheek[1]);
 
     // eyebrows
     //fill( this.eyebrowColour);
     //stroke( this.eyebrowColour);
     //strokeWeight(0.08);
-    //this.draw_segment(positions.left_eyebrow);
+    //this.draw_segment(positions.top_lip);
     //this.draw_segment(positions.right_eyebrow);
 
     this.avLeftEyebrow = positions.left_eyebrow[0];
@@ -116,21 +185,46 @@ function Face() {
     let left_eye_pos = segment_average(positions.left_eye);
     let right_eye_pos = segment_average(positions.right_eye);
 
+    //AVERAGES FOR LEFT EYE
+    this.leftEyeCornerL = segment_average([positions.chin[4], positions.left_eyebrow[0]]);
+    this.leftEyeCornerR = segment_average([positions.left_eye[3], positions.nose_tip[0]]);
+    //AVERAGES FOR lEFT EYE PUPIL
+    this.leftEyePupilR = segment_average([positions.left_eye[3], this.leftEyeCornerR]);
+    this.leftEyePupilL = segment_average([positions.left_eye[3], positions.left_eyebrow[0]]);
+
+
+    //AVERAGES FOR RIGHT EYE
+    this.rightEyeCornerL = segment_average([positions.right_eye[0], positions.nose_tip[4]]);
+    this.rightEyeCornerR = segment_average([positions.chin[12], positions.right_eyebrow[4]]);
+    //AVERAGES FOR RIGHT EYE PUPIL
+    this.rightEyePupilR = segment_average([positions.right_eyebrow[4], this.rightEyeCornerR]);
+    this.rightEyePupilL = segment_average([positions.right_eyebrow[4], positions.right_eye[0]]);
+
+    //DRAW EYE SHAPES
+    quad(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]); //DRAW LEFT EYE
+    quad(positions.right_eye[0][0], positions.right_eye[0][1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]); //DRAW RIGHT EYE
+
+    //DRAW PUPILS
+    fill(this.neonBlue);
+    strokeWeight(0.01);
+    triangle(this.leftEyePupilL[0], this.leftEyePupilL[1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]); //LEFT PUPIL
+    triangle(this.rightEyePupilL[0], this.rightEyePupilL[1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]); //RIGHT PUPIL
+    noFill();
     // eyes
     noStroke();
     let curEyeShift = 0.04 * this.eye_shift;
     if(this.num_eyes == 2) {
       fill(this.detailColour);
-      ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
-      ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
+      //ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
+      //ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
 
       
       noFill();
       stroke(this.neonBlue);
       strokeWeight(0.15);
       //ellipse(left_eye_pos[0], left_eye_pos[1], 1, 1);
-      arc(left_eye_pos[0], left_eye_pos[1], 1.5, 1, 0, 200, CHORD);
-      arc(right_eye_pos[0], right_eye_pos[1], 1.5, 1, 340, 180, CHORD);
+      //arc(left_eye_pos[0], left_eye_pos[1], 1.5, 1, 0, 200, CHORD);  //LEFT EYE
+      //arc(right_eye_pos[0], right_eye_pos[1], 1.5, 1, 340, 180, CHORD);  //RIGHT EYE
       
 
       // fill(this.mainColour);
