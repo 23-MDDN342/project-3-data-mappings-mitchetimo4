@@ -14,3 +14,7 @@ Added the halo ellipse. Still havnt added the teeth or other details as I am hav
 25/5/23
 
 Today Completely redrew the eyes and mouth using new points from the face tracking data. I calculated a range of averages around the eyes and mouth to create new paths for the lines. rather than having a set shape following the eye points I now have dynamic eyes and mouth that change as the face under it does. This works far better and is actually closer to my sketch. I also added pupils and teeth. My next step is to draw some horns and experiment with colour. I also might a new set of eyes that are croses that I can swap too using sliders to increase variation in the final product. 
+
+25/5/23
+
+Changed colour of halo and added sketch files. I also added the cross eye variant and the horns variant but neither are linked to a slider yet. Next step is to do so. 

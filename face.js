@@ -44,6 +44,9 @@ function Face() {
   this.eyebrowColour = [119, 85, 17]
 
   this.neonBlue = ["#1F51FF"];
+  this.neonYellow = ["#faed27"];
+  this.neonPink = ["#FF10F0"];
+  this.neonRed = ["#FF3131"];
 
   const neonBlue = ["#1F51FF"];
   const neonPurple = ["#9D00FF"];
@@ -85,7 +88,7 @@ function Face() {
    *    bottom_lip, top_lip, nose_tip, nose_bridge, 
    */  
 
-      this.midCheek = segment_average([positions.right_eye[4], positions.chin[11]]);
+      //this.midCheek = segment_average([positions.right_eye[4], positions.chin[11]]);
        
       // this.jokerSmileLeft = segment_average([positions.chin[4], positions.top_lip[0]]); //LEFT MOUTH EDGE
       // this.jokerSmileRight = segment_average([positions.chin[12], positions.top_lip[6]]); //RIGHT MOUTH EDGE
@@ -159,10 +162,15 @@ function Face() {
 
     //line(this.avLeftEyebrow[0], this.avLeftEyebrow[1], this.avRightEyebrow[0], this.avRightEyebrow[1]);
 
-    //stroke(this.neonYellow);
+    stroke(this.neonYellow);
     //stroke(this.neonPink);
 
     ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
+
+    stroke(this.neonRed);
+    triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
+    triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
+
     // draw the chin segment using points
     //fill(this.chinColour);
     //stroke(this.chinColour);
@@ -201,6 +209,7 @@ function Face() {
     this.rightEyePupilL = segment_average([positions.right_eyebrow[4], positions.right_eye[0]]);
 
     //DRAW EYE SHAPES
+    stroke(this.neonBlue);
     quad(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]); //DRAW LEFT EYE
     quad(positions.right_eye[0][0], positions.right_eye[0][1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]); //DRAW RIGHT EYE
 
@@ -210,6 +219,18 @@ function Face() {
     triangle(this.leftEyePupilL[0], this.leftEyePupilL[1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]); //LEFT PUPIL
     triangle(this.rightEyePupilL[0], this.rightEyePupilL[1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]); //RIGHT PUPIL
     noFill();
+
+    //DRAW CROSS EYES
+    stroke(this.neonPink);
+    strokeWeight(0.15);
+    line(positions.right_eye[0][0], positions.right_eye[0][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]);
+    line(positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]);
+
+    line(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]);
+    line(positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]);
+
+
+
     // eyes
     noStroke();
     let curEyeShift = 0.04 * this.eye_shift;
