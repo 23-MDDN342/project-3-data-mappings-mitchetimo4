@@ -4,7 +4,7 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 3;
@@ -162,15 +162,24 @@ function Face() {
 
     //line(this.avLeftEyebrow[0], this.avLeftEyebrow[1], this.avRightEyebrow[0], this.avRightEyebrow[1]);
 
-    stroke(this.neonYellow);
+    //stroke(this.neonYellow);
     //stroke(this.neonPink);
 
-    ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
+    //ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
 
-    stroke(this.neonRed);
-    triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
-    triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
+    //stroke(this.neonRed);
+    //triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
+    //triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
 
+    if(this.type_hat == 1) { //DRAW HALO
+      stroke(this.neonYellow);
+      ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
+    } else {
+      stroke(this.neonRed);
+      triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
+      triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
+
+    }
     // draw the chin segment using points
     //fill(this.chinColour);
     //stroke(this.chinColour);
@@ -209,58 +218,53 @@ function Face() {
     this.rightEyePupilL = segment_average([positions.right_eyebrow[4], positions.right_eye[0]]);
 
     //DRAW EYE SHAPES
-    stroke(this.neonBlue);
-    quad(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]); //DRAW LEFT EYE
-    quad(positions.right_eye[0][0], positions.right_eye[0][1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]); //DRAW RIGHT EYE
+    //stroke(this.neonBlue);
+    //quad(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]); //DRAW LEFT EYE
+    //quad(positions.right_eye[0][0], positions.right_eye[0][1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]); //DRAW RIGHT EYE
 
     //DRAW PUPILS
-    fill(this.neonBlue);
-    strokeWeight(0.01);
-    triangle(this.leftEyePupilL[0], this.leftEyePupilL[1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]); //LEFT PUPIL
-    triangle(this.rightEyePupilL[0], this.rightEyePupilL[1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]); //RIGHT PUPIL
-    noFill();
+    //fill(this.neonBlue);
+    //strokeWeight(0.01);
+    //triangle(this.leftEyePupilL[0], this.leftEyePupilL[1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]); //LEFT PUPIL
+    //triangle(this.rightEyePupilL[0], this.rightEyePupilL[1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]); //RIGHT PUPIL
+    //noFill();
 
     //DRAW CROSS EYES
-    stroke(this.neonPink);
-    strokeWeight(0.15);
-    line(positions.right_eye[0][0], positions.right_eye[0][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]);
-    line(positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]);
+    //stroke(this.neonPink);
+    //strokeWeight(0.15);
+    //line(positions.right_eye[0][0], positions.right_eye[0][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]);
+    //line(positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]);
 
-    line(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]);
-    line(positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]);
+    //line(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]);
+    //line(positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]);
 
 
-
-    // eyes
-    noStroke();
+    //DRAWING EYES
+    
     let curEyeShift = 0.04 * this.eye_shift;
-    if(this.num_eyes == 2) {
-      fill(this.detailColour);
-      //ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
-      //ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
-
-      
-      noFill();
+    if(this.type_eyes == 2) { //DRAW NORMAL EYES
+      //DRAW EYE SHAPES
       stroke(this.neonBlue);
-      strokeWeight(0.15);
-      //ellipse(left_eye_pos[0], left_eye_pos[1], 1, 1);
-      //arc(left_eye_pos[0], left_eye_pos[1], 1.5, 1, 0, 200, CHORD);  //LEFT EYE
-      //arc(right_eye_pos[0], right_eye_pos[1], 1.5, 1, 340, 180, CHORD);  //RIGHT EYE
+      quad(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]); //DRAW LEFT EYE
+      quad(positions.right_eye[0][0], positions.right_eye[0][1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]); //DRAW RIGHT EYE
+
+     //DRAW PUPILS
+      fill(this.neonBlue);
+      strokeWeight(0.01);
+      triangle(this.leftEyePupilL[0], this.leftEyePupilL[1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]); //LEFT PUPIL
+      triangle(this.rightEyePupilL[0], this.rightEyePupilL[1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]); //RIGHT PUPIL
+      noFill();
       
-
-      // fill(this.mainColour);
-      // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
-      // ellipse(right_eye_pos[0] + curEyeShift, right_eye_pos[1], 0.18);
     }
-    else {
-      let eyePosX = (left_eye_pos[0] + right_eye_pos[0]) / 2;
-      let eyePosY = (left_eye_pos[1] + right_eye_pos[1]) / 2;
+    else { //DRAW CROSS EYES
+      stroke(this.neonPink);
+      strokeWeight(0.15);
+      line(positions.right_eye[0][0], positions.right_eye[0][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]);
+      line(positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]);
 
-      fill(this.detailColour);
-      ellipse(eyePosX, eyePosY, 0.45, 0.27);
+      line(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]);
+      line(positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]);
 
-      fill(this.mainColour);
-      ellipse(eyePosX - 0.1 + curEyeShift, eyePosY, 0.18);
     }
    // fill(0)
    //ellipse(0,0, 0.5,0.5) center point
@@ -289,16 +293,16 @@ function Face() {
 
   /* set internal properties based on list numbers 0-100 */
   this.setProperties = function(settings) {
-    this.num_eyes = int(map(settings[0], 0, 100, 1, 2));
-    this.eye_shift = map(settings[1], 0, 100, -2, 2);
+    this.type_eyes = int(map(settings[0], 0, 100, 1, 2));
+    this.type_hat = int(map(settings[1], 0, 100, 1, 2));
     this.mouth_size = map(settings[2], 0, 100, 0.5, 8);
   }
 
   /* get internal properties as list of numbers 0-100 */
   this.getProperties = function() {
     let settings = new Array(3);
-    settings[0] = map(this.num_eyes, 1, 2, 0, 100);
-    settings[1] = map(this.eye_shift, -2, 2, 0, 100);
+    settings[0] = map(this.type_eyes, 1, 2, 0, 100);
+    settings[1] = map(this.type_hat, 1, 2, 0, 100);
     settings[2] = map(this.mouth_size, 0.5, 8, 0, 100);
     return settings;
   }
