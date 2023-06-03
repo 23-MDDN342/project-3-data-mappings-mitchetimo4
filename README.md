@@ -22,3 +22,11 @@ Changed colour of halo and added sketch files. I also added the cross eye varian
 4/6/23
 
 Everything is now linked to the sliders. I have also added a new mouth varient for open mouths using new values. My next step is to possibly add more colour options and train the sliders. 
+
+4/6/23
+
+I have now added a colour slider. My goal is to have purple neon for people with darker skin and blue neon for people with fairer skin. I have also changed my mind about some of the other training values. If the person in the image is showing teeth then i will show the smiling mouth and if not the open mouth. I have also changed the cross eyes to people with thick eyebrows. My next step is to train the faces. 
+
+4/6/23
+
+I have made a quick addition before I start the training. I have added more colour sliders for the horn colour and halo colour to change in relation to hair colour/darkness. Darker hair will now result in a darker accessory colour and vice versa.
