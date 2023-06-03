@@ -4,7 +4,7 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 3;
@@ -109,42 +109,46 @@ function Face() {
       this.topLipLeftMid = segment_average([this.jokerSmileLeft, this.topLipMiddle]);
       this.topLipRightMid = segment_average([this.jokerSmileRight, this.topLipMiddle]);
 
+      //POINT FOR TOUNGE
+      this.toungePoint = segment_average([this.jokerSmileLeftMid, this.topLipRightMid]);
 
 
       // moouthShape 
       beginShape()
-      //vertex(this.jokerSmileLeft[0],this.jokerSmileLeft[1] )
-      //curveVertex( this.jokerSmileLeft[0],this.jokerSmileLeft[1])
-      //curveVertex( this.jokerSmileRight[0], this.jokerSmileRight[1])
-      //curveVertex( this.jokerSmileLeft[0],this.jokerSmileLeft[1])
-      //curveVertex( this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1])
 
+      if(this.type_mouth == 2) { //DRAW OPEN MOUTH
+        //DRAW MOUTH SHAPE
+        line(this.jokerSmileLeft[0],this.jokerSmileLeft[1],this.jokerSmileRight[0], this.jokerSmileRight[1]); //STRAIGHT LINE FOR TOP LIP
 
-      //curveVertex( this.jokerSmileLeftMid[0],this.jokerSmileLeftMid[1])
-      //curveVertex( this.jokerSmileBottom[0], this.jokerSmileBottom[1])
+        line(this.jokerSmileLeft[0],this.jokerSmileLeft[1],this.jokerSmileLeftMidU[0], this.jokerSmileLeftMidU[1]);
+        line(this.jokerSmileLeftMidU[0],this.jokerSmileLeftMidU[1],this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1]);
+        line(this.jokerSmileLeftMid[0],this.jokerSmileLeftMid[1],this.jokerSmileBottom[0], this.jokerSmileBottom[1]);
+        line(this.jokerSmileBottom[0],this.jokerSmileBottom[1],this.jokerSmileRightMid[0], this.jokerSmileRightMid[1]);
+        line(this.jokerSmileRightMid[0],this.jokerSmileRightMid[1],this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
+        line(this.jokerSmileRight[0],this.jokerSmileRight[1],this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
 
-      //curveVertex(this.jokerSmileBottom[0],this.jokerSmileBottom[1])
-      //curveVertex(this.jokerSmileRightMid[0], this.jokerSmileRightMid[1])
+        //DRAW TEETH (left to right)
+        line(this.jokerSmileLeftMidU[0], this.jokerSmileLeftMidU[1], this.topLipLeftMid[0], this.topLipLeftMid[1]);
+        line(this.topLipLeftMid[0], this.topLipLeftMid[1], this.jokerSmileBottom[0], this.jokerSmileBottom[1]);
+        line(this.jokerSmileBottom[0], this.jokerSmileBottom[1], this.topLipRightMid[0], this.topLipRightMid[1]);
+        line(this.topLipRightMid[0], this.topLipRightMid[1], this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
 
-      //curveVertex(this.jokerSmileRight[0],this.jokerSmileRight[1])
-      //curveVertex(this.jokerSmileRightMid[0], this.jokerSmileRightMid[1])
+      } else if(this.type_mouth == 1){
+        //DRAW OPEN MOUTH 
+        line(this.topLipLeftMid[0], this.topLipLeftMid[1], this.topLipRightMid[0], this.topLipRightMid[1]);
+        line(this.topLipRightMid[0], this.topLipRightMid[1], this.jokerSmileRightMid[0], this.jokerSmileRightMid[1]);
+        line(this.jokerSmileRightMid[0], this.jokerSmileRightMid[1], this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1]);
+        line(this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1], this.topLipLeftMid[0], this.topLipLeftMid[1]);
 
-      //DRAW MOUTH SHAPE
-     line(this.jokerSmileLeft[0],this.jokerSmileLeft[1],this.jokerSmileRight[0], this.jokerSmileRight[1]); //STRAIGHT LINE FOR TOP LIP
+        //DRAW TOUNGE
+        line(this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1], this.toungePoint[0], this.toungePoint[1]);
+        line(this.toungePoint[0], this.toungePoint[1], this.jokerSmileRightMid[0], this.jokerSmileRightMid[1]);
 
-     line(this.jokerSmileLeft[0],this.jokerSmileLeft[1],this.jokerSmileLeftMidU[0], this.jokerSmileLeftMidU[1]);
-     line(this.jokerSmileLeftMidU[0],this.jokerSmileLeftMidU[1],this.jokerSmileLeftMid[0], this.jokerSmileLeftMid[1]);
-     line(this.jokerSmileLeftMid[0],this.jokerSmileLeftMid[1],this.jokerSmileBottom[0], this.jokerSmileBottom[1]);
-     line(this.jokerSmileBottom[0],this.jokerSmileBottom[1],this.jokerSmileRightMid[0], this.jokerSmileRightMid[1]);
-     line(this.jokerSmileRightMid[0],this.jokerSmileRightMid[1],this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
-     line(this.jokerSmileRight[0],this.jokerSmileRight[1],this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
-
-      //DRAW TEETH (left to right)
-      line(this.jokerSmileLeftMidU[0], this.jokerSmileLeftMidU[1], this.topLipLeftMid[0], this.topLipLeftMid[1]);
-      line(this.topLipLeftMid[0], this.topLipLeftMid[1], this.jokerSmileBottom[0], this.jokerSmileBottom[1]);
-      line(this.jokerSmileBottom[0], this.jokerSmileBottom[1], this.topLipRightMid[0], this.topLipRightMid[1]);
-      line(this.topLipRightMid[0], this.topLipRightMid[1], this.jokerSmileRightMidU[0], this.jokerSmileRightMidU[1]);
+      }
+    
       endShape()      
+
+
       //console.log(this.midCheek)
      // this.midCheekY = segment_average([positions.right_eye[4][1], positions.chin[11][1]]);
 
@@ -162,19 +166,14 @@ function Face() {
 
     //line(this.avLeftEyebrow[0], this.avLeftEyebrow[1], this.avRightEyebrow[0], this.avRightEyebrow[1]);
 
-    //stroke(this.neonYellow);
-    //stroke(this.neonPink);
-
-    //ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
-
-    //stroke(this.neonRed);
     //triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
     //triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
 
     if(this.type_hat == 1) { //DRAW HALO
       stroke(this.neonYellow);
       ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
-    } else {
+
+    } else if(this.type_hat == 2){
       stroke(this.neonRed);
       triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
       triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
@@ -189,8 +188,6 @@ function Face() {
     //stroke(100, 0, 100);
     //this.draw_segment(positions.nose_bridge);
     //this.draw_segment(positions.nose_tip);
-
-    
 
     //strokeWeight(0.03);
 
@@ -241,7 +238,7 @@ function Face() {
 
     //DRAWING EYES
     
-    let curEyeShift = 0.04 * this.eye_shift;
+    
     if(this.type_eyes == 2) { //DRAW NORMAL EYES
       //DRAW EYE SHAPES
       stroke(this.neonBlue);
@@ -256,7 +253,7 @@ function Face() {
       noFill();
       
     }
-    else { //DRAW CROSS EYES
+    else if (this.type_eyes == 1){ //DRAW CROSS EYES
       stroke(this.neonPink);
       strokeWeight(0.15);
       line(positions.right_eye[0][0], positions.right_eye[0][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]);
@@ -295,7 +292,7 @@ function Face() {
   this.setProperties = function(settings) {
     this.type_eyes = int(map(settings[0], 0, 100, 1, 2));
     this.type_hat = int(map(settings[1], 0, 100, 1, 2));
-    this.mouth_size = map(settings[2], 0, 100, 0.5, 8);
+    this.type_mouth = int(map(settings[2], 0, 100, 1, 2));
   }
 
   /* get internal properties as list of numbers 0-100 */
@@ -303,7 +300,7 @@ function Face() {
     let settings = new Array(3);
     settings[0] = map(this.type_eyes, 1, 2, 0, 100);
     settings[1] = map(this.type_hat, 1, 2, 0, 100);
-    settings[2] = map(this.mouth_size, 0.5, 8, 0, 100);
+    settings[2] = map(this.type_mouth, 1, 2, 0, 100);
     return settings;
   }
 }

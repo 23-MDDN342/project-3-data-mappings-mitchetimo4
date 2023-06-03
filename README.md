@@ -18,3 +18,7 @@ Today Completely redrew the eyes and mouth using new points from the face tracki
 25/5/23
 
 Changed colour of halo and added sketch files. I also added the cross eye variant and the horns variant but neither are linked to a slider yet. Next step is to do so. 
+
+4/6/23
+
+Everything is now linked to the sliders. I have also added a new mouth varient for open mouths using new values. My next step is to possibly add more colour options and train the sliders. 
