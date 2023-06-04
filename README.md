@@ -30,3 +30,23 @@ I have now added a colour slider. My goal is to have purple neon for people with
 4/6/23
 
 I have made a quick addition before I start the training. I have added more colour sliders for the horn colour and halo colour to change in relation to hair colour/darkness. Darker hair will now result in a darker accessory colour and vice versa.
+
+I have trained the sliders now but they arent super accurate a lot of the time in the quiz. Im thinking about changing what im training it to do from
+
+if showing teeth = smile
+if long hair = halo
+if dark skin = purple stroke
+if prominant eyebrows = cross eyes
+dark hair = orange halo/red horns
+light hair = yellow halo/pink horns
+
+to 
+
+if smiling = smile
+if long hair = halo
+if dark skin = purple stroke
+if angry eyebrows = cross eyes
+dark hair = orange halo/red horns
+light hair = yellow halo/pink horns
+
+this could make it easier for the program to learn as it uses more tracking points and less colour. 
