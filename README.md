@@ -45,8 +45,23 @@ to
 if smiling = smile
 if long hair = halo
 if dark skin = purple stroke
-if angry eyebrows = cross eyes
+if flat eyebrows = cross eyes
 dark hair = orange halo/red horns
 light hair = yellow halo/pink horns
 
 this could make it easier for the program to learn as it uses more tracking points and less colour. 
+
+
+4/6/23
+
+I have now retained the sliders using 
+if smiling = smile
+if long hair = halo
+if dark skin = purple stroke
+if flat eyebrows = cross eyes
+dark hair = orange halo/red horns
+light hair = yellow halo/pink horns
+
+It now works much better than before but still isnt perfect. While training for this commit I also trained the cross eyes to appear for angery eyebrows but that barely worked so I went back over it. 
+
+My next step is to add my animation code. 

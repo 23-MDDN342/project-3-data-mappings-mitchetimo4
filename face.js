@@ -4,10 +4,10 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = true;
+var DEBUG_MODE = false;
 
 // this can be used to set the number of sliders to show
-var NUM_SLIDERS = 3;
+var NUM_SLIDERS = 6;
 
 // other variables can be in here too
 // here's some examples for colors used
@@ -47,6 +47,8 @@ function Face() {
   this.neonYellow = ["#faed27"];
   this.neonPink = ["#FF10F0"];
   this.neonRed = ["#FF3131"];
+  this.neonPurple = ["#9D00FF"];
+  this.neonOrange = ["#FF5F1F"];
 
   const neonBlue = ["#1F51FF"];
   const neonPurple = ["#9D00FF"];
@@ -72,9 +74,37 @@ function Face() {
     //fill(this.detailColour);
     //ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
 
+    //SETTING COLOUR VARIABLE
+    this.currentStrokeColour = this.neonBlue;
+
+    if (this.colourValue > 50 ){
+      this.currentStrokeColour = this.neonBlue;
+    } else{
+      this.currentStrokeColour = this.neonPurple;
+    }
+
+    //SETTING HORN COLOUR VARIABLE
+    this.currentHornColour = this.neonRed;
+    
+    if (this.hornColourValue > 50 ){
+      this.currentHornColour = this.neonRed;
+    } else{
+      this.currentHornColour = this.neonPink;
+    }
+
+    //SETTING HALO COLOUR VARIABLE
+    this.currentHaloColour = this.neonYellow;
+    
+    if (this.haloColourValue > 50 ){
+      this.currentHaloColour = this.neonYellow;
+    } else{
+      this.currentHaloColour = this.neonOrange;
+    }
+
+
     this.tipOfNose =positions.nose_tip[0];
     noFill();
-    stroke(this.neonBlue);
+    stroke(this.currentStrokeColour);
     strokeWeight(0.15);
     //arc(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 3, 2, 360, 180, CHORD);
     
@@ -170,11 +200,11 @@ function Face() {
     //triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
 
     if(this.type_hat == 1) { //DRAW HALO
-      stroke(this.neonYellow);
+      stroke(this.currentHaloColour);
       ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
 
     } else if(this.type_hat == 2){
-      stroke(this.neonRed);
+      stroke(this.currentHornColour);
       triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
       triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
 
@@ -241,12 +271,12 @@ function Face() {
     
     if(this.type_eyes == 2) { //DRAW NORMAL EYES
       //DRAW EYE SHAPES
-      stroke(this.neonBlue);
+      stroke(this.currentStrokeColour);
       quad(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]); //DRAW LEFT EYE
       quad(positions.right_eye[0][0], positions.right_eye[0][1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]); //DRAW RIGHT EYE
 
      //DRAW PUPILS
-      fill(this.neonBlue);
+      fill(this.currentStrokeColour);
       strokeWeight(0.01);
       triangle(this.leftEyePupilL[0], this.leftEyePupilL[1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]); //LEFT PUPIL
       triangle(this.rightEyePupilL[0], this.rightEyePupilL[1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]); //RIGHT PUPIL
@@ -293,6 +323,9 @@ function Face() {
     this.type_eyes = int(map(settings[0], 0, 100, 1, 2));
     this.type_hat = int(map(settings[1], 0, 100, 1, 2));
     this.type_mouth = int(map(settings[2], 0, 100, 1, 2));
+    this.colourValue = map(settings[3], 0, 100, 0, 100);
+    this.hornColourValue = map(settings[4], 0, 100, 0, 100);
+    this.haloColourValue = map(settings[5], 0, 100, 0, 100);
   }
 
   /* get internal properties as list of numbers 0-100 */
@@ -301,6 +334,9 @@ function Face() {
     settings[0] = map(this.type_eyes, 1, 2, 0, 100);
     settings[1] = map(this.type_hat, 1, 2, 0, 100);
     settings[2] = map(this.type_mouth, 1, 2, 0, 100);
+    settings[3] = map(this.colourValue, 0, 100, 0, 100);
+    settings[4] = map(this.hornColourValue, 0, 100, 0, 100);
+    settings[5] = map(this.haloColourValue, 0, 100, 0, 100);
     return settings;
   }
 }
