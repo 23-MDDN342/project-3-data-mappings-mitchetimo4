@@ -65,3 +65,7 @@ light hair = yellow halo/pink horns
 It now works much better than before but still isnt perfect. While training for this commit I also trained the cross eyes to appear for angery eyebrows but that barely worked so I went back over it. 
 
 My next step is to add my animation code. 
+
+4/6/23
+
+My animation from project one has now been added. 
