@@ -62,18 +62,7 @@ function Face() {
    */  
   this.draw = function(positions) {
     console.log()
-    // HEAD
-    //ellipseMode(CENTER);
-    //stroke(stroke_color);
-    //fill(this.mainColour);
-    //ellipse(segment_average(positions.chin)[0], 0, 3, 4);
-    //noStroke();
-
-
-    // MOUTH
-    //fill(this.detailColour);
-    //ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
-
+    
     //SETTING COLOUR VARIABLE
     this.currentStrokeColour = this.neonBlue;
 
@@ -106,11 +95,6 @@ function Face() {
     noFill();
     stroke(this.currentStrokeColour);
     strokeWeight(0.15);
-    //arc(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 3, 2, 360, 180, CHORD);
-    
-    //arc(this.tipOfNose[0]+0.2, this.tipOfNose[1], 3, 2, 360, 180, CHORD); //MOUTH
-
-      //line(positions.right_eye[4][0],positions.right_eye[4][1], positions.chin[16][0],positions.chin[16][1]);
     
     /*
    * Draw the face with position lists that include:
@@ -118,11 +102,8 @@ function Face() {
    *    bottom_lip, top_lip, nose_tip, nose_bridge, 
    */  
 
-      //this.midCheek = segment_average([positions.right_eye[4], positions.chin[11]]);
-       
-      // this.jokerSmileLeft = segment_average([positions.chin[4], positions.top_lip[0]]); //LEFT MOUTH EDGE
-      // this.jokerSmileRight = segment_average([positions.chin[12], positions.top_lip[6]]); //RIGHT MOUTH EDGE
-      
+      //AVERAGES FOR MOUTH
+
       this.jokerSmileLeft = segment_average([positions.chin[3], positions.top_lip[0]]); //LEFT MOUTH EDGE
       this.jokerSmileRight = segment_average([positions.chin[13], positions.top_lip[6]]); //RIGHT MOUTH EDGE
       
@@ -143,7 +124,7 @@ function Face() {
       this.toungePoint = segment_average([this.jokerSmileLeftMid, this.topLipRightMid]);
 
 
-      // moouthShape 
+      // DRAWING MOUTH 
       beginShape()
 
       if(this.type_mouth == 2) { //DRAW OPEN MOUTH
@@ -179,26 +160,11 @@ function Face() {
       endShape()      
 
 
-      //console.log(this.midCheek)
-     // this.midCheekY = segment_average([positions.right_eye[4][1], positions.chin[11][1]]);
-
-      //line(positions.chin[16][0],positions.chin[16][1], this.midCheek[0], this.midCheek[1]);
-
-    // eyebrows
-    //fill( this.eyebrowColour);
-    //stroke( this.eyebrowColour);
-    //strokeWeight(0.08);
-    //this.draw_segment(positions.top_lip);
-    //this.draw_segment(positions.right_eyebrow);
+    //DRAW ACCESSORIES
 
     this.avLeftEyebrow = positions.left_eyebrow[0];
     this.avRightEyebrow = positions.right_eyebrow[0];
-
-    //line(this.avLeftEyebrow[0], this.avLeftEyebrow[1], this.avRightEyebrow[0], this.avRightEyebrow[1]);
-
-    //triangle(positions.chin[16][0], positions.chin[16][1], positions.chin[16][0], positions.chin[16][1]-0.8, positions.chin[16][0]+0.8, positions.chin[16][1]-1.2);
-    //triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
-
+    
     if(this.type_hat == 1) { //DRAW HALO
       stroke(this.currentHaloColour);
       ellipse(this.avRightEyebrow[0]-0.5,this.avRightEyebrow[1]-1, 3, 1); //HALO
@@ -209,22 +175,9 @@ function Face() {
       triangle(positions.chin[0][0], positions.chin[0][1], positions.chin[0][0], positions.chin[0][1]-0.8, positions.chin[0][0]-0.8, positions.chin[0][1]-1.2);
 
     }
-    // draw the chin segment using points
-    //fill(this.chinColour);
-    //stroke(this.chinColour);
-    //this.draw_segment(positions.chin);
+    
 
-    //fill(100, 0, 100);
-    //stroke(100, 0, 100);
-    //this.draw_segment(positions.nose_bridge);
-    //this.draw_segment(positions.nose_tip);
-
-    //strokeWeight(0.03);
-
-    //fill(this.lipColour);
-    //stroke(this.lipColour);
-    //this.draw_segment(positions.top_lip);
-    //this.draw_segment(positions.bottom_lip);
+    //AVERAGES FOR EYES
 
     let left_eye_pos = segment_average(positions.left_eye);
     let right_eye_pos = segment_average(positions.right_eye);
@@ -244,31 +197,10 @@ function Face() {
     this.rightEyePupilR = segment_average([positions.right_eyebrow[4], this.rightEyeCornerR]);
     this.rightEyePupilL = segment_average([positions.right_eyebrow[4], positions.right_eye[0]]);
 
-    //DRAW EYE SHAPES
-    //stroke(this.neonBlue);
-    //quad(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]); //DRAW LEFT EYE
-    //quad(positions.right_eye[0][0], positions.right_eye[0][1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]); //DRAW RIGHT EYE
-
-    //DRAW PUPILS
-    //fill(this.neonBlue);
-    //strokeWeight(0.01);
-    //triangle(this.leftEyePupilL[0], this.leftEyePupilL[1], positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]); //LEFT PUPIL
-    //triangle(this.rightEyePupilL[0], this.rightEyePupilL[1], positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]); //RIGHT PUPIL
-    //noFill();
-
-    //DRAW CROSS EYES
-    //stroke(this.neonPink);
-    //strokeWeight(0.15);
-    //line(positions.right_eye[0][0], positions.right_eye[0][1], this.rightEyeCornerR[0], this.rightEyeCornerR[1]);
-    //line(positions.right_eyebrow[4][0], positions.right_eyebrow[4][1], this.rightEyeCornerL[0], this.rightEyeCornerL[1]);
-
-    //line(positions.left_eyebrow[0][0], positions.left_eyebrow[0][1], this.leftEyeCornerR[0], this.leftEyeCornerR[1]);
-    //line(positions.left_eye[3][0], positions.left_eye[3][1], this.leftEyeCornerL[0], this.leftEyeCornerL[1]);
-
+    
 
     //DRAWING EYES
-    
-    
+     
     if(this.type_eyes == 2) { //DRAW NORMAL EYES
       //DRAW EYE SHAPES
       stroke(this.currentStrokeColour);

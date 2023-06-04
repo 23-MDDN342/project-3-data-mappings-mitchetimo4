@@ -3,69 +3,21 @@
 ## 2023 MDDN342 Assignment 3: Data Mappings
 
 
-18/5/23
+Final README
 
-So far I have started my neon mask using arcs. This produces curves instead of straight lines unlike my sketch but I'm going to work with it for now while I get the rest of it drawn. My next step is to add the teeth and some eyebrows and alter the dots in the eyes. 
+After redesigning my parameterised faces using new points I managed to create faces that recognise 
+characteristics from the image being used and display a unique face based on them. They use 2 different
+Eye options, 2 different mouth options, 2 different face colours and 2 different accessories, each with 
+2 different colour options based on hair colour. 
 
-24/5/23
+I decided to use these as my mapped properties during training:
+If smiling: smile, else draw an open mouth
+If long hair: halo, else draw horns
+If dark skin: neon purple stroke, else use neon blue stroke
+If flat eyebrows: cross eyes, else draw regular eyes
+Dark hair: orange halo/red horns
+Light hair: yellow halo/pink horns
 
-Added the halo ellipse. Still havnt added the teeth or other details as I am having a bit of trouble figuring out where to draw them. 
-
-25/5/23
-
-Today Completely redrew the eyes and mouth using new points from the face tracking data. I calculated a range of averages around the eyes and mouth to create new paths for the lines. rather than having a set shape following the eye points I now have dynamic eyes and mouth that change as the face under it does. This works far better and is actually closer to my sketch. I also added pupils and teeth. My next step is to draw some horns and experiment with colour. I also might a new set of eyes that are croses that I can swap too using sliders to increase variation in the final product. 
-
-25/5/23
-
-Changed colour of halo and added sketch files. I also added the cross eye variant and the horns variant but neither are linked to a slider yet. Next step is to do so. 
-
-4/6/23
-
-Everything is now linked to the sliders. I have also added a new mouth varient for open mouths using new values. My next step is to possibly add more colour options and train the sliders. 
-
-4/6/23
-
-I have now added a colour slider. My goal is to have purple neon for people with darker skin and blue neon for people with fairer skin. I have also changed my mind about some of the other training values. If the person in the image is showing teeth then i will show the smiling mouth and if not the open mouth. I have also changed the cross eyes to people with thick eyebrows. My next step is to train the faces. 
-
-4/6/23
-
-I have made a quick addition before I start the training. I have added more colour sliders for the horn colour and halo colour to change in relation to hair colour/darkness. Darker hair will now result in a darker accessory colour and vice versa.
-
-I have trained the sliders now but they arent super accurate a lot of the time in the quiz. Im thinking about changing what im training it to do from
-
-if showing teeth = smile
-if long hair = halo
-if dark skin = purple stroke
-if prominant eyebrows = cross eyes
-dark hair = orange halo/red horns
-light hair = yellow halo/pink horns
-
-to 
-
-if smiling = smile
-if long hair = halo
-if dark skin = purple stroke
-if flat eyebrows = cross eyes
-dark hair = orange halo/red horns
-light hair = yellow halo/pink horns
-
-this could make it easier for the program to learn as it uses more tracking points and less colour. 
-
-
-4/6/23
-
-I have now retained the sliders using 
-if smiling = smile
-if long hair = halo
-if dark skin = purple stroke
-if flat eyebrows = cross eyes
-dark hair = orange halo/red horns
-light hair = yellow halo/pink horns
-
-It now works much better than before but still isnt perfect. While training for this commit I also trained the cross eyes to appear for angery eyebrows but that barely worked so I went back over it. 
-
-My next step is to add my animation code. 
-
-4/6/23
-
-My animation from project one has now been added. 
+The reason being after many attempts I found it most effective to target the shape of the 
+tracking points rather than colours. Although it sometimes has trouble recognising smiles and the 
+correct eyebrows, it still shows an accurate representation of the reference image's characteristics. 
